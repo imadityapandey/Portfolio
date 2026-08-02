@@ -1,0 +1,513 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aditya Pandey — Portfolio</title>
+<meta name="description" content="Aditya Pandey — Frontend Web Developer &amp; BCA student. Projects, skills, certifications, and resume.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f4f1;
+    --bg-alt: #ececE7;
+    --card: #ffffff;
+    --ink: #1b1b22;
+    --ink-soft: #5a5b64;
+    --border: #dcdbd4;
+    --accent: #3c4fd1;
+    --accent-soft: #e7e9fb;
+    --amber: #d98c1f;
+    --amber-soft: #f8ecd8;
+    --green: #3e8e5c;
+    --green-soft: #e3f0e7;
+    --gray-soft: #ececE7;
+    --max-width: 880px;
+    --radius: 10px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .mono { font-family: 'JetBrains Mono', 'Courier New', monospace; }
+  a { color: inherit; }
+
+  section {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 90px 24px;
+    scroll-margin-top: 70px;
+  }
+
+  /* ---------- Nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .logo {
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 18px 8px;
+    white-space: nowrap;
+  }
+  .logo .bracket { color: var(--accent); }
+  .tabs { display: flex; overflow-x: auto; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tabs a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+    padding: 18px 13px;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .tabs a:hover { color: var(--ink); }
+  .tabs a.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* ---------- Hero ---------- */
+  .hero { padding-top: 110px; padding-bottom: 70px; }
+  .eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    color: var(--green);
+    background: var(--green-soft);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 20px;
+  }
+  .hero h1 { font-size: clamp(2rem, 5vw, 2.9rem); line-height: 1.2; margin: 0 0 14px; }
+  .hero p.lead { font-size: 1.05rem; color: var(--ink-soft); max-width: 540px; margin: 0 0 32px; }
+
+  .code-block {
+    background: var(--ink);
+    color: #f4f4f1;
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    font-size: 0.85rem;
+    overflow-x: auto;
+    margin: 0 0 32px;
+  }
+  .code-block .key { color: #8fb3ff; }
+  .code-block .string { color: #9fe3b0; }
+  .code-block .punct { color: #9a9aa5; }
+
+  .cursor {
+    display: inline-block; width: 8px; height: 1em;
+    background: var(--accent); vertical-align: text-bottom; margin-left: 2px;
+    animation: blink 1s step-end infinite;
+  }
+  @media (prefers-reduced-motion: reduce) { .cursor { animation: none; } }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 11px 20px; border-radius: 8px; text-decoration: none;
+    font-size: 0.9rem; font-weight: 500;
+    transition: transform 0.15s ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn.primary { background: var(--accent); color: #fff; }
+  .btn.secondary { background: var(--card); border: 1px solid var(--border); color: var(--ink); }
+
+  .contact-strip {
+    display: flex; flex-wrap: wrap; gap: 16px;
+    margin-top: 26px; font-size: 0.82rem; color: var(--ink-soft);
+  }
+  .contact-strip a { text-decoration: none; }
+  .contact-strip a:hover { color: var(--accent); }
+
+  /* ---------- Section headers ---------- */
+  .section-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 30px; }
+  .section-head .file {
+    font-size: 0.75rem; color: var(--ink-soft);
+    background: var(--bg-alt); padding: 3px 9px; border-radius: 5px;
+  }
+  .section-head h2 { font-size: 1.5rem; margin: 0; }
+
+  /* ---------- About ---------- */
+  .about-text { color: var(--ink-soft); max-width: 640px; margin-bottom: 30px; }
+  .stats { display: flex; gap: 14px; flex-wrap: wrap; }
+  .stat {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 16px 20px; min-width: 130px;
+  }
+  .stat .num { font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 700; color: var(--accent); }
+  .stat .label { font-size: 0.8rem; color: var(--ink-soft); }
+
+  /* ---------- Skills ---------- */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 28px;
+  }
+  .skill-group h4 {
+    font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--ink-soft); margin: 0 0 14px;
+  }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    background: var(--bg-alt); border: 1px solid var(--border);
+    padding: 6px 12px; border-radius: 20px; font-size: 0.82rem;
+  }
+
+  /* ---------- Featured project ---------- */
+  .project-feature {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 32px;
+  }
+  .project-feature-head {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+  }
+  .lang-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--amber); }
+  .project-feature-head span.tag-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--ink-soft);
+  }
+  .project-feature h3 { font-size: 1.3rem; margin: 0 0 14px; }
+  .project-feature ul { margin: 0 0 20px; padding-left: 20px; color: var(--ink-soft); font-size: 0.94rem; }
+  .project-feature li { margin-bottom: 8px; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 22px; }
+  .tag {
+    font-size: 0.72rem; background: var(--accent-soft); color: var(--accent);
+    padding: 3px 9px; border-radius: 20px; font-family: 'JetBrains Mono', monospace;
+  }
+  .project-links { display: flex; gap: 14px; }
+  .link-btn { font-size: 0.85rem; text-decoration: none; color: var(--ink); font-weight: 500; border-bottom: 1px solid var(--ink); }
+  .link-btn.secondary { color: var(--ink-soft); border-bottom-color: var(--border); }
+  .project-note { margin-top: 22px; font-size: 0.8rem; color: var(--ink-soft); font-style: italic; }
+
+  /* ---------- Activity log ---------- */
+  .log-panel {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden;
+  }
+  .log-row {
+    display: grid;
+    grid-template-columns: 90px 110px 1fr;
+    gap: 14px;
+    align-items: center;
+    padding: 13px 20px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.87rem;
+  }
+  .log-row:last-child { border-bottom: none; }
+  .log-date { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--ink-soft); }
+  .log-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
+    text-align: center; padding: 3px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.03em;
+  }
+  .log-tag.cert { background: var(--accent-soft); color: var(--accent); }
+  .log-tag.achievement { background: var(--amber-soft); color: var(--amber); }
+  .log-tag.leadership { background: var(--green-soft); color: var(--green); }
+  .log-tag.workshop { background: var(--gray-soft); color: var(--ink-soft); }
+  .log-msg { color: var(--ink); }
+
+  @media (max-width: 600px) {
+    .log-row { grid-template-columns: 1fr; gap: 6px; }
+  }
+
+  /* ---------- Education ---------- */
+  .edu-list { display: flex; flex-direction: column; gap: 14px; }
+  .edu-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 22px 24px;
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap;
+  }
+  .edu-card h3 { font-size: 1rem; margin: 0 0 4px; }
+  .edu-card .edu-sub { font-size: 0.88rem; color: var(--ink-soft); margin: 0; }
+  .edu-score {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
+    background: var(--accent-soft); color: var(--accent);
+    padding: 5px 12px; border-radius: 20px; white-space: nowrap;
+  }
+
+  /* ---------- Resume ---------- */
+  .resume-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+  }
+  .resume-card h3 { margin: 0 0 6px; font-size: 1.1rem; }
+  .resume-card p { margin: 0; color: var(--ink-soft); font-size: 0.9rem; }
+
+  /* ---------- Terminal / contact ---------- */
+  .terminal { background: var(--ink); border-radius: var(--radius); overflow: hidden; }
+  .terminal-bar { display: flex; gap: 6px; padding: 12px 16px; background: rgba(255,255,255,0.05); }
+  .terminal-bar span { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.25); }
+  .terminal-body { padding: 24px 26px 30px; font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; color: #e8e8ec; }
+  .terminal-body p { margin: 0 0 10px; }
+  .terminal-body a { color: #9fe3b0; text-decoration: none; }
+  .terminal-body a:hover { text-decoration: underline; }
+  .prompt { color: var(--accent); margin-right: 8px; }
+  .output { color: var(--ink-soft); }
+  .comment { color: #6f707a; }
+
+  footer { text-align: center; padding: 40px 24px 60px; font-size: 0.8rem; color: var(--ink-soft); }
+
+  @media (max-width: 640px) {
+    section { padding: 60px 20px; }
+    .hero { padding-top: 90px; }
+    .resume-card { flex-direction: column; align-items: flex-start; }
+    .edu-card { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo"><span class="bracket">&lt;</span>Aditya<span class="bracket"> /&gt;</span></div>
+    <div class="tabs" id="tabs">
+      <a href="#about">about.md</a>
+      <a href="#skills">skills.css</a>
+      <a href="#projects">projects.json</a>
+      <a href="#activity">activity.log</a>
+      <a href="#education">education.md</a>
+      <a href="#contact">contact.sh</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <span class="eyebrow">● open_to_opportunities</span>
+  <h1>Hi, I'm Aditya Pandey.<br>I build things for the web.</h1>
+  <p class="lead">Frontend web development enthusiast and final-year BCA student, focused on building responsive, user-friendly websites.</p>
+
+  <pre class="code-block"><code><span class="punct">{</span>
+  <span class="key">"role"</span><span class="punct">:</span> <span class="string">"Frontend Web Developer"</span><span class="punct">,</span>
+  <span class="key">"education"</span><span class="punct">:</span> <span class="string">"BCA, Khalsa College of Engineering &amp; Technology"</span><span class="punct">,</span>
+  <span class="key">"location"</span><span class="punct">:</span> <span class="string">"Patna, Bihar, India"</span><span class="punct">,</span>
+  <span class="key">"status"</span><span class="punct">:</span> <span class="string">"open_to_opportunities"</span>
+<span class="punct">}</span><span class="cursor"></span></code></pre>
+
+  <div class="btn-row">
+    <a href="https://github.com/imadityapandey" class="btn primary" target="_blank" rel="noopener">View my GitHub ↗</a>
+    <a href="https://1drv.ms/w/c/a7ebecfce32f5434/IQBIK-kT9_onSKtUja7YQAQeAbQS-W-18akc--JjpLzahWs?e=D99CPT" class="btn secondary" download>Download Résumé ↓</a>
+  </div>
+
+  <div class="contact-strip">
+    <a href="mailto:pandeyaditya9031@gmail.com">pandeyaditya9031@gmail.com</a>
+    <a href="tel:+916202636886">+91 62026 36886</a>
+    <a href="https://linkedin.com/in/adityapandey9031" target="_blank" rel="noopener">linkedin.com/in/adityapandey9031</a>
+    <span>Patna, Bihar, India</span>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <div class="section-head">
+    <span class="file">about.md</span>
+    <h2>About</h2>
+  </div>
+  <p class="about-text">
+    Final-year BCA student with a working knowledge of HTML5, CSS3, JavaScript, C, C++, Python basics, and MySQL.
+    Passionate about frontend web development and building responsive, user-friendly websites — currently looking
+    for opportunities to apply that in a real product team.
+  </p>
+  <div class="stats">
+    <div class="stat"><div class="num">8.01</div><div class="label">CGPA</div></div>
+    <div class="stat"><div class="num">5</div><div class="label">Certifications</div></div>
+    <div class="stat"><div class="num">2</div><div class="label">Leadership roles</div></div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section id="skills">
+  <div class="section-head">
+    <span class="file">skills.css</span>
+    <h2>Skills</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <h4>Languages</h4>
+      <div class="chip-row">
+        <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span>
+        <span class="chip">C</span><span class="chip">C++</span><span class="chip">Python (Basics)</span>
+        <span class="chip">SQL (Basics)</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>Frontend</h4>
+      <div class="chip-row">
+        <span class="chip">HTML5</span><span class="chip">CSS3</span>
+        <span class="chip">JavaScript (ES6 Basics)</span><span class="chip">Responsive Web Design</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>Database &amp; Tools</h4>
+      <div class="chip-row">
+        <span class="chip">MySQL</span><span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">VS Code</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>CS Fundamentals</h4>
+      <div class="chip-row">
+        <span class="chip">Data Structures &amp; Algorithms</span><span class="chip">DBMS</span>
+        <span class="chip">Operating Systems</span><span class="chip">OOP</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>Soft Skills</h4>
+      <div class="chip-row">
+        <span class="chip">Problem-Solving</span><span class="chip">Team Collaboration</span>
+        <span class="chip">Communication</span><span class="chip">Adaptability</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="projects">
+  <div class="section-head">
+    <span class="file">projects.json</span>
+    <h2>Featured Project</h2>
+  </div>
+  <div class="project-feature">
+    <div class="project-feature-head">
+      <span class="lang-dot"></span>
+      <span class="tag-label">full-stack</span>
+    </div>
+    <h3>Railway Ticket Reservation Web App</h3>
+    <ul>
+      <li>Built a full-stack train reservation web application with live class-wise seat availability and ticket-status lookup.</li>
+      <li>Developed Flask REST APIs and SQLite workflows for booking, cancellation, waitlist promotion, and password-protected train updates.</li>
+    </ul>
+    <div class="tag-row">
+      <span class="tag">Python</span><span class="tag">Flask</span><span class="tag">SQLite</span>
+      <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span>
+    </div>
+    <div class="project-links">
+      <a href="https://github.com/your-username/railway-reservation" class="link-btn">Source Code ↗</a>
+    </div>
+    <p class="project-note">More projects coming soon — this section grows as new ones ship.</p>
+  </div>
+</section>
+
+<!-- ============ ACTIVITY LOG ============ -->
+<section id="activity">
+  <div class="section-head">
+    <span class="file">activity.log</span>
+    <h2>Certifications &amp; Achievements</h2>
+  </div>
+  <div class="log-panel">
+    <div class="log-row"><span class="log-date">Jul 2026</span><span class="log-tag cert">certification</span><span class="log-msg">IoT Security Analyst — Skill India</span></div>
+    <div class="log-row"><span class="log-date">Jul 2026</span><span class="log-tag cert">certification</span><span class="log-msg">Network Security Engineer — Skill India</span></div>
+    <div class="log-row"><span class="log-date">Jun 2026</span><span class="log-tag workshop">workshop</span><span class="log-msg">Faculty Development Program — Stress Management: "Recharge, Refresh, Reconnect"</span></div>
+    <div class="log-row"><span class="log-date">Apr 2026</span><span class="log-tag cert">certification</span><span class="log-msg">Language Model Architecture: A Deep Dive — L&amp;T EduTech</span></div>
+    <div class="log-row"><span class="log-date">Apr 2026</span><span class="log-tag achievement">achievement</span><span class="log-msg">2nd Place, Rangoli — Tech Urja 2K26, Khalsa College of Engineering &amp; Technology</span></div>
+    <div class="log-row"><span class="log-date">Apr 2026</span><span class="log-tag achievement">achievement</span><span class="log-msg">Participated in E-sport — Tech Urja 2K26, Khalsa College of Engineering &amp; Technology</span></div>
+    <div class="log-row"><span class="log-date">Dec 2025</span><span class="log-tag cert">certification</span><span class="log-msg">Deep Learning Essentials — L&amp;T EduTech</span></div>
+    <div class="log-row"><span class="log-date">Dec 2025</span><span class="log-tag leadership">leadership</span><span class="log-msg">Coordinator, IDE Bootcamp for PM SHRI Schools</span></div>
+    <div class="log-row"><span class="log-date">Sep 2025</span><span class="log-tag leadership">leadership</span><span class="log-msg">Coordinator, HackSpark 2025 — national-level 24-hour hackathon</span></div>
+    <div class="log-row"><span class="log-date">Jun 2025</span><span class="log-tag cert">certification</span><span class="log-msg">Applied Machine Learning Specialization — L&amp;T EduTech</span></div>
+  </div>
+</section>
+
+<!-- ============ EDUCATION ============ -->
+<section id="education">
+  <div class="section-head">
+    <span class="file">education.md</span>
+    <h2>Education</h2>
+  </div>
+  <div class="edu-list">
+    <div class="edu-card">
+      <div>
+        <h3>Khalsa College of Engineering and Technology, Amritsar</h3>
+        <p class="edu-sub">Bachelor of Computer Applications · 2024 – 2027</p>
+      </div>
+      <span class="edu-score">CGPA 8.01/10</span>
+    </div>
+    <div class="edu-card">
+      <div>
+        <h3>O.I.P.V. Kesarbagh, Khaira</h3>
+        <p class="edu-sub">Class XII, Science (BSEB) · 2021 – 2023</p>
+      </div>
+      <span class="edu-score">67.8%</span>
+    </div>
+    <div class="edu-card">
+      <div>
+        <h3>SRI K.S.S.S.H.S Raghopur, Vaishali</h3>
+        <p class="edu-sub">Class X (BSEB) · 2020 – 2021</p>
+      </div>
+      <span class="edu-score">79.6%</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESUME ============ -->
+<section id="resume">
+  <div class="resume-card">
+    <div>
+      <h3>Prefer the classic format?</h3>
+      <p>Grab a PDF copy of my résumé — same details, ATS-friendly layout.</p>
+    </div>
+    <a href="resume.pdf" class="btn primary" download>Download PDF ↓</a>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+  <div class="section-head">
+    <span class="file">contact.sh</span>
+    <h2>Contact</h2>
+  </div>
+  <div class="terminal">
+    <div class="terminal-bar"><span></span><span></span><span></span></div>
+    <div class="terminal-body">
+      <p><span class="prompt">$</span>echo "Let's build something together."</p>
+      <p class="output">Let's build something together.</p>
+      <p><span class="prompt">$</span>mail <a href="mailto:pandeyaditya9031@gmail.com">pandeyaditya9031@gmail.com</a></p>
+      <p><span class="prompt">$</span>call <a href="tel:+916202636886">+91 62026 36886</a></p>
+      <p><span class="prompt">$</span>open <a href="https://linkedin.com/in/adityapandey9031" target="_blank" rel="noopener">linkedin.com/in/adityapandey9031</a></p>
+      <p><span class="prompt">$</span>open <a href="https://github.com/imadityapandey" target="_blank" rel="noopener">github.com/imadityapandey</a> <span class="comment"># add your real GitHub URL</span></p>
+      <p class="output"># based in Patna, Bihar, India</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Built with HTML, CSS &amp; JS — deployed with GitHub Pages / Netlify.
+</footer>
+
+<script>
+  const tabs = document.querySelectorAll('#tabs a');
+  const sections = document.querySelectorAll('section[id]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        tabs.forEach(tab => {
+          tab.classList.toggle('active', tab.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(section => observer.observe(section));
+</script>
+
+</body>
+</html>
